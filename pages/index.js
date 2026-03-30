@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import { useState, useRef } from 'react'
 
 export default function SpeedTest() {
@@ -289,11 +290,15 @@ export default function SpeedTest() {
 
       <header className="header">
         <div className="logo">
-          <span className="logo-icon">⚡</span>
-          <span className="logo-text">Scout.gg</span>
+          <Link href="/" className="logo-link">
+            <span className="logo-icon">⚡</span>
+            <span className="logo-text">Scout.gg</span>
+          </Link>
         </div>
         <nav className="nav">
-          <a href="/" className="nav-link active">Speed Test</a>
+          <Link href="/" className="nav-link active">Speed Test</Link>
+          <Link href="/blog" className="nav-link">Blog</Link>
+          <Link href="/about" className="nav-link">About</Link>
         </nav>
       </header>
 
@@ -462,6 +467,13 @@ export default function SpeedTest() {
           display: flex;
           align-items: center;
           gap: 10px;
+        }
+
+        .logo-link {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          text-decoration: none;
         }
 
         .logo-icon { font-size: 28px; }

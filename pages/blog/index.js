@@ -1,0 +1,212 @@
+import Head from 'next/head'
+import Link from 'next/link'
+
+export default function Blog() {
+  const posts = [
+    {
+      slug: 'how-to-improve-ping',
+      title: 'How to Improve Your Ping for Gaming',
+      excerpt: 'Learn how to reduce ping and improve your gaming experience with these proven tips.',
+      date: 'March 30, 2026',
+      category: 'Gaming Tips'
+    },
+    {
+      slug: 'best-internet-speed-gaming',
+      title: 'Best Internet Speed for Gaming in 2026',
+      excerpt: 'What internet speeds do you actually need for competitive gaming? We break it down.',
+      date: 'March 30, 2026',
+      category: 'Gaming Guide'
+    }
+  ]
+
+  return (
+    <div className="container">
+      <Head>
+        <title>Blog | Scout.gg - Gaming Speed Test Tips</title>
+        <meta name="description" content="Tips and guides about internet speed, ping optimization, and gaming performance." />
+        <meta name="keywords" content="gaming blog, speed test tips, ping optimization, gaming internet" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://scout-gg.vercel.app/blog" />
+        <meta property="og:title" content="Blog | Scout.gg" />
+        <meta property="og:description" content="Tips and guides about internet speed for gaming." />
+        <meta property="og:type" content="website" />
+      </Head>
+
+      <header className="header">
+        <div className="logo">
+          <Link href="/" className="logo-link">
+            <span className="logo-icon">⚡</span>
+            <span className="logo-text">Scout.gg</span>
+          </Link>
+        </div>
+        <nav className="nav">
+          <Link href="/" className="nav-link">Speed Test</Link>
+          <Link href="/about" className="nav-link">About</Link>
+        </nav>
+      </header>
+
+      <main className="main">
+        <section className="hero">
+          <h1 className="title">Blog</h1>
+          <p className="subtitle">Tips, guides, and everything about gaming internet</p>
+        </section>
+
+        <section className="posts-grid">
+          {posts.map(post => (
+            <Link href={`/blog/${post.slug}`} key={post.slug} className="post-card">
+              <div className="post-meta">
+                <span className="category">{post.category}</span>
+                <span className="date">{post.date}</span>
+              </div>
+              <h2 className="post-title">{post.title}</h2>
+              <p className="post-excerpt">{post.excerpt}</p>
+              <span className="read-more">Read More →</span>
+            </Link>
+          ))}
+        </section>
+      </main>
+
+      <footer className="footer">
+        <p>© 2026 Scout.gg - Built for Gamers</p>
+      </footer>
+
+      <style jsx>{`
+        .container {
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px 40px;
+          background: rgba(10, 10, 10, 0.95);
+          border-bottom: 1px solid #1a1a1a;
+        }
+
+        .logo-link {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          text-decoration: none;
+        }
+
+        .logo-icon { font-size: 28px; }
+
+        .logo-text {
+          font-size: 24px;
+          font-weight: 800;
+          background: linear-gradient(135deg, #00ff88, #00cc66);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+          color: #666;
+          text-decoration: none;
+          font-weight: 500;
+          margin-left: 20px;
+        }
+
+        .nav-link:hover { color: #00ff88; }
+
+        .main {
+          flex: 1;
+          padding: 40px 20px;
+          max-width: 900px;
+          margin: 0 auto;
+          width: 100%;
+        }
+
+        .hero {
+          text-align: center;
+          margin-bottom: 40px;
+        }
+
+        .title {
+          font-size: 42px;
+          font-weight: 800;
+          margin-bottom: 8px;
+        }
+
+        .subtitle {
+          font-size: 18px;
+          color: #666;
+        }
+
+        .posts-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 24px;
+        }
+
+        .post-card {
+          background: #111;
+          border: 1px solid #222;
+          border-radius: 12px;
+          padding: 30px;
+          text-decoration: none;
+          transition: all 0.3s;
+        }
+
+        .post-card:hover {
+          border-color: #00ff88;
+          transform: translateY(-4px);
+        }
+
+        .post-meta {
+          display: flex;
+          gap: 12px;
+          margin-bottom: 16px;
+        }
+
+        .category {
+          color: #00ff88;
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        .date {
+          color: #666;
+          font-size: 11px;
+        }
+
+        .post-title {
+          color: #fff;
+          font-size: 20px;
+          font-weight: 700;
+          margin-bottom: 12px;
+          line-height: 1.4;
+        }
+
+        .post-excerpt {
+          color: #888;
+          font-size: 14px;
+          line-height: 1.6;
+          margin-bottom: 16px;
+        }
+
+        .read-more {
+          color: #00ff88;
+          font-size: 13px;
+          font-weight: 500;
+        }
+
+        .footer {
+          padding: 30px 20px;
+          text-align: center;
+          color: #444;
+          border-top: 1px solid #1a1a1a;
+        }
+
+        @media (max-width: 768px) {
+          .header { padding: 15px 20px; }
+          .title { font-size: 32px; }
+        }
+      `}</style>
+    </div>
+  )
+}
