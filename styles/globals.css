@@ -31,14 +31,18 @@ button {
 }
 
 .nav {
-  display: flex;
-  gap: 40px;
+  display: flex !important;
+  gap: 50px !important;
 }
 
 .nav-link {
-  font-size: 16px;
+  font-size: 18px !important;
+  margin-left: 0 !important;
+  padding: 0 10px !important;
 }
-  color: #0a0a0a;
+
+nav .nav-link + .nav-link {
+  margin-left: 0 !important;
 }
 
 ::-webkit-scrollbar {
