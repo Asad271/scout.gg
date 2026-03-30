@@ -4,6 +4,13 @@ import Link from 'next/link'
 export default function Blog() {
   const posts = [
     {
+      slug: 'how-to-fix-internet-lag',
+      title: 'How to Fix Internet Lag for Gaming',
+      excerpt: 'Learn how to reduce lag, lower ping, and eliminate internet lag with these proven tips and solutions.',
+      date: 'March 30, 2026',
+      category: 'Gaming Tips'
+    },
+    {
       slug: 'how-to-improve-ping',
       title: 'How to Improve Your Ping for Gaming',
       excerpt: 'Learn how to reduce ping and improve your gaming experience with these proven tips.',
@@ -22,9 +29,9 @@ export default function Blog() {
   return (
     <div className="container">
       <Head>
-        <title>Blog | Scout.gg - Gaming Speed Test Tips</title>
-        <meta name="description" content="Tips and guides about internet speed, ping optimization, and gaming performance." />
-        <meta name="keywords" content="gaming blog, speed test tips, ping optimization, gaming internet" />
+        <title>Blog | Scout.gg - Gaming & Internet Speed Tips</title>
+        <meta name="description" content="Tips and guides about internet speed, ping optimization, reduce gaming lag, and improve gaming performance." />
+        <meta name="keywords" content="gaming blog, speed test tips, ping optimization, gaming internet, reduce gaming lag, how to fix internet lag, low ping tips, best internet speed for gaming" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://scout-gg.vercel.app/blog" />
         <meta property="og:title" content="Blog | Scout.gg" />

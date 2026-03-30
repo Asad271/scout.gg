@@ -228,9 +228,9 @@ export default function SpeedTest() {
   return (
     <div className="container">
       <Head>
-        <title>Free Speed Test for Gamers | Scout.gg - Ping, Download, Upload Test</title>
-        <meta name="description" content="Free internet speed test designed for gamers. Test your ping, download speed, upload speed, and jitter in seconds. Get gaming-specific recommendations." />
-        <meta name="keywords" content="speed test for gamers, internet speed test gaming, ping test, download test, upload test, gaming internet speed, latency test, jitter test" />
+        <title>Free Internet Speed Test | Ping, Download, Upload & Jitter Test</title>
+        <meta name="description" content="Free internet speed test for gamers. Check your ping, download speed, upload speed, latency and jitter. Test your internet connection now!" />
+        <meta name="keywords" content="speed test, internet speed test, ping test, download speed test, upload speed test, latency test, jitter test, check internet speed, gaming speed test, speed test for gamers, check ping online, health check ping, how to check my ping, gaming internet speed, low ping, fix internet lag" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Scout.gg" />
@@ -304,8 +304,8 @@ export default function SpeedTest() {
 
       <main className="main">
         <section className="hero">
-          <h1 className="title">Internet Speed Test</h1>
-          <p className="subtitle">For Gamers, By Gamers</p>
+          <h1 className="title">Free Internet Speed Test</h1>
+          <p className="subtitle">Test your ping, download, upload & jitter | Check internet speed for gaming</p>
         </section>
 
         <section className="gauge-section">
@@ -395,16 +395,26 @@ export default function SpeedTest() {
         )}
 
         <section className="info-section">
-          <h2>What is a Good Speed for Gaming?</h2>
+          <h2>What is a Good Speed for Gaming? | Internet Speed Guide</h2>
           <div className="info-grid">
             <div className="info-card">
               <div className="info-icon">📡</div>
-              <h3>Ping</h3>
+              <h3>Ping / Latency</h3>
               <ul>
                 <li><span className="green">&lt; 20ms</span> Perfect</li>
                 <li><span className="green">&lt; 40ms</span> Great</li>
                 <li><span className="yellow">&lt; 60ms</span> Good</li>
                 <li><span className="red">&gt; 60ms</span> Lag</li>
+              </ul>
+            </div>
+            <div className="info-card">
+              <div className="info-icon">⚡</div>
+              <h3>Jitter</h3>
+              <ul>
+                <li><span className="green">&lt; 5ms</span> Perfect</li>
+                <li><span className="green">&lt; 10ms</span> Great</li>
+                <li><span className="yellow">&lt; 20ms</span> Good</li>
+                <li><span className="red">&gt; 20ms</span> Unstable</li>
               </ul>
             </div>
             <div className="info-card">
