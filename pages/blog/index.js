@@ -16,6 +16,13 @@ export default function Blog() {
       excerpt: 'Learn how to reduce ping and improve your gaming experience with these proven tips.',
       date: 'March 30, 2026',
       category: 'Gaming Tips'
+    },
+    {
+      slug: 'best-internet-speed-gaming',
+      title: 'Best Internet Speed for Gaming in 2026',
+      excerpt: 'What internet speeds do you actually need for competitive gaming? We break it down.',
+      date: 'March 30, 2026',
+      category: 'Gaming Guide'
     }
   ]
 
