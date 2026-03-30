@@ -239,10 +239,12 @@ export default function About() {
         }
 
         .footer {
-          padding: 30px 20px;
+          padding: 40px 20px;
           text-align: center;
-          color: #444;
+          color: #555;
           border-top: 1px solid #1a1a1a;
+          font-size: 14px;
+          margin-top: 60px;
         }
 
         @media (max-width: 768px) {
