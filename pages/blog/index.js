@@ -103,16 +103,16 @@ export default function Blog() {
           -webkit-text-fill-color: transparent;
         }
 
+        .nav {
+          display: flex;
+          gap: 32px;
+        }
+
         .nav-link {
           color: #666;
           text-decoration: none;
           font-weight: 500;
-          margin-left: 32px;
           font-size: 15px;
-        }
-
-        .nav-link:first-child {
-          margin-left: 0;
         }
 
         .nav-link:hover { color: #00ff88; }

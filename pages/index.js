@@ -486,16 +486,16 @@ export default function SpeedTest() {
           -webkit-text-fill-color: transparent;
         }
 
+        .nav {
+          display: flex;
+          gap: 32px;
+        }
+
         .nav-link {
           color: #00ff88;
           text-decoration: none;
           font-weight: 500;
-          margin-left: 32px;
           font-size: 15px;
-        }
-
-        .nav-link:first-child {
-          margin-left: 0;
         }
 
         .main {

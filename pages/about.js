@@ -144,21 +144,17 @@ export default function About() {
           -webkit-text-fill-color: transparent;
         }
 
+        .nav {
+          display: flex;
+          gap: 32px;
+        }
+
         .nav-link {
           color: #666;
           text-decoration: none;
           font-weight: 500;
-          margin-left: 32px;
           font-size: 15px;
           transition: color 0.3s;
-        }
-
-        .nav-link:first-child {
-          margin-left: 0;
-        }
-
-        .nav-link:hover, .nav-link.active {
-          color: #00ff88;
         }
 
         .main {
