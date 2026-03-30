@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 
 export default function SpeedTest() {
   const [status, setStatus] = useState('idle')
@@ -10,42 +10,9 @@ export default function SpeedTest() {
   const [jitter, setJitter] = useState(0)
   const [testPhase, setTestPhase] = useState('')
   const [testRunning, setTestRunning] = useState(false)
-  const [displaySpeed, setDisplaySpeed] = useState(0)
   
   const gaugeRef = useRef(null)
   const abortRef = useRef(false)
-  const targetSpeedRef = useRef(0)
-  
-  // Animated number counting effect
-  useEffect(() => {
-    if (status !== 'testing') {
-      setDisplaySpeed(testPhase === 'ping' ? ping : testPhase === 'download' ? downloadSpeed : testPhase === 'upload' ? uploadSpeed : 0)
-      return
-    }
-    
-    const target = testPhase === 'ping' ? ping : testPhase === 'download' ? downloadSpeed : testPhase === 'upload' ? uploadSpeed : 0
-    targetSpeedRef.current = target
-    
-    if (target === 0) return
-    
-    const duration = 800
-    const steps = 20
-    const stepTime = duration / steps
-    const increment = target / steps
-    let current = 0
-    
-    const interval = setInterval(() => {
-      current += increment
-      if (current >= target) {
-        setDisplaySpeed(testPhase === 'ping' ? ping : testPhase === 'download' ? downloadSpeed : testPhase === 'upload' ? uploadSpeed : 0)
-        clearInterval(interval)
-      } else {
-        setDisplaySpeed(Math.round(current * 10) / 10)
-      }
-    }, stepTime)
-    
-    return () => clearInterval(interval)
-  }, [downloadSpeed, uploadSpeed, ping, status, testPhase])
 
   const getGamingRating = () => {
     if (ping <= 20 && downloadSpeed >= 100) return { text: 'Excellent', color: '#00ff88' }
@@ -395,7 +362,7 @@ export default function SpeedTest() {
               <div className="gauge-center">
                 <div className="speed-display">
                   <span className={`speed-number ${status === 'testing' ? 'animating' : ''}`}>
-                    {status === 'testing' ? displaySpeed.toFixed(1) : (testPhase === 'ping' ? ping : testPhase === 'download' ? downloadSpeed : testPhase === 'upload' ? uploadSpeed : 0).toFixed(1)}
+                    {testPhase === 'ping' ? ping : testPhase === 'download' ? downloadSpeed : testPhase === 'upload' ? uploadSpeed : 0}
                   </span>
                   <span className="speed-unit">{testPhase === 'ping' ? 'ms' : 'Mbps'}</span>
                 </div>
