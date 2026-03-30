@@ -488,14 +488,14 @@ export default function SpeedTest() {
 
         .nav {
           display: flex;
-          gap: 32px;
+          gap: 40px;
         }
 
         .nav-link {
           color: #00ff88;
           text-decoration: none;
           font-weight: 500;
-          font-size: 15px;
+          font-size: 16px;
         }
 
         .main {
