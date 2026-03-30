@@ -39,11 +39,11 @@ export default function Blog() {
 
         <h2>Quick Fixes Summary</h2>
         <ul>
-          <li>✅ Use Ethernet cable (biggest fix)</li>
-          <li>✅ Close background downloads</li>
-          <li>✅ Enable router QoS</li>
-          <li>✅ Select nearest game server</li>
-          <li>✅ Test your connection with Scout.gg</li>
+          <li>● Use Ethernet cable (biggest fix)</li>
+          <li>● Close background downloads</li>
+          <li>● Enable router QoS</li>
+          <li>● Select nearest game server</li>
+          <li>● Test your connection with Scout.gg</li>
         </ul>
       `
     },
@@ -79,11 +79,11 @@ export default function Blog() {
 
         <h2>Quick Tips Summary</h2>
         <ul>
-          <li>✅ Always use Ethernet over WiFi</li>
-          <li>✅ Close background downloads</li>
-          <li>✅ Select nearest game server</li>
-          <li>✅ Enable router QoS</li>
-          <li>✅ Test your ping regularly with Scout.gg</li>
+          <li>● Always use Ethernet over WiFi</li>
+          <li>● Close background downloads</li>
+          <li>● Select nearest game server</li>
+          <li>● Enable router QoS</li>
+          <li>● Test your ping regularly with Scout.gg</li>
         </ul>
       `
     },
@@ -132,11 +132,11 @@ export default function Blog() {
 
         <h2>Quick Checklist</h2>
         <ul>
-          <li>✅ Have at least 25 Mbps download</li>
-          <li>✅ Have at least 5 Mbps upload</li>
-          <li>✅ Ping under 50ms</li>
-          <li>✅ Jitter under 20ms</li>
-          <li>✅ Use Ethernet, not WiFi</li>
+          <li>● Have at least 25 Mbps download</li>
+          <li>● Have at least 5 Mbps upload</li>
+          <li>● Ping under 50ms</li>
+          <li>● Jitter under 20ms</li>
+          <li>● Use Ethernet, not WiFi</li>
         </ul>
       `
     }

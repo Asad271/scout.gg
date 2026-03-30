@@ -425,7 +425,7 @@ export default function SpeedTest() {
           <h2>What is a Good Speed for Gaming? | Internet Speed Guide</h2>
           <div className="info-grid">
             <div className="info-card">
-              <div className="info-icon">📡</div>
+              <div className="info-icon-text">LATENCY</div>
               <h3>Ping / Latency</h3>
               <ul>
                 <li><span className="green">&lt; 20ms</span> Perfect</li>
@@ -435,7 +435,7 @@ export default function SpeedTest() {
               </ul>
             </div>
             <div className="info-card">
-              <div className="info-icon">⚡</div>
+              <div className="info-icon-text">STABILITY</div>
               <h3>Jitter</h3>
               <ul>
                 <li><span className="green">&lt; 5ms</span> Perfect</li>
@@ -445,7 +445,7 @@ export default function SpeedTest() {
               </ul>
             </div>
             <div className="info-card">
-              <div className="info-icon">⬇️</div>
+              <div className="info-icon-text">DOWN</div>
               <h3>Download</h3>
               <ul>
                 <li><span className="green">100+ Mbps</span> Perfect</li>
@@ -455,7 +455,7 @@ export default function SpeedTest() {
               </ul>
             </div>
             <div className="info-card">
-              <div className="info-icon">⬆️</div>
+              <div className="info-icon-text">UP</div>
               <h3>Upload</h3>
               <ul>
                 <li><span className="green">20+ Mbps</span> Perfect</li>
@@ -875,6 +875,14 @@ export default function SpeedTest() {
 
         .info-card:hover .info-icon {
           transform: scale(1.1);
+        }
+
+        .info-icon-text {
+          font-size: 14px;
+          font-weight: 700;
+          color: #00ff88;
+          margin-bottom: 12px;
+          letter-spacing: 2px;
         }
 
         .info-card h3 { 
