@@ -88,14 +88,7 @@ export default function SpeedTest() {
     }
 
     try {
-      // Test files from public CDNs (real download measurement)
-      const testFiles = [
-        'https://speed.cloudflare.com/__down?bytes=20000000',  // 20MB from Cloudflare
-        'https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js',  // ~70KB
-        'https://unpkg.com/react@18/umd/react.production.min.js'  // ~130KB
-      ]
-
-      // PING TEST - measure real latency with smooth progress
+      // Download test uses Cloudflare endpoint directly
       setTestPhase('ping')
       setDownloadSpeed(0)
       setUploadSpeed(0)
@@ -104,14 +97,7 @@ export default function SpeedTest() {
       
       const pingResults = []
       const jitterResults = []
-      const pingIterations = 12
-      
-      // Warm-up ping
-      try {
-        await fetch('https://cloudflare.com/cdn-cgi/trace', { mode: 'no-cors', cache: 'no-store' })
-      } catch(e) {}
-      
-      await new Promise(r => setTimeout(r, 500))
+      const pingIterations = 6
       
       for (let i = 0; i < pingIterations; i++) {
         if (abortRef.current) break
@@ -139,7 +125,7 @@ export default function SpeedTest() {
         }
         
         // Smooth delay between pings
-        await new Promise(r => setTimeout(r, 200))
+        await new Promise(r => setTimeout(r, 150))
       }
 
       const validPings = pingResults.filter(p => p < 500) // Filter out anomalies
@@ -153,26 +139,19 @@ export default function SpeedTest() {
       
       setPing(avgPing)
       setJitter(Math.min(avgJitter, 100))
-      await new Promise(r => setTimeout(r, 800))
+      await new Promise(r => setTimeout(r, 400))
 
       // DOWNLOAD TEST - measure real download speed with smooth progression
       setTestPhase('download')
       let totalBytes = 0
       let totalDuration = 0
       const downloadSpeeds = []
-      const downloadIterations = 8
-      
-      // Warm-up download
-      try {
-        await fetch(testFiles[0] + '&r=' + Math.random(), { cache: 'no-store' })
-      } catch(e) {}
-      
-      await new Promise(r => setTimeout(r, 500))
+      const downloadIterations = 4
       
       for (let i = 0; i < downloadIterations; i++) {
         if (abortRef.current) break
         
-        const testSizes = [5000000, 10000000, 15000000, 20000000] // 5MB, 10MB, 15MB, 20MB
+        const testSizes = [5000000, 10000000, 15000000, 20000000] // 5MB to 20MB
         const size = testSizes[i % testSizes.length]
         const url = `https://speed.cloudflare.com/__down?bytes=${size}&r=${Math.random()}`
         
@@ -201,7 +180,7 @@ export default function SpeedTest() {
         }
         
         // Smooth delay between tests
-        await new Promise(r => setTimeout(r, 800))
+        await new Promise(r => setTimeout(r, 300))
       }
       
       // Final calculation - use median for accuracy
@@ -211,18 +190,18 @@ export default function SpeedTest() {
         setDownloadSpeed(Math.round(median * 10) / 10)
       }
       
-      await new Promise(r => setTimeout(r, 600))
+      await new Promise(r => setTimeout(r, 300))
 
       // UPLOAD TEST - measure upload with smooth progression
       setTestPhase('upload')
       const uploadSpeeds = []
-      const uploadIterations = 6
+      const uploadIterations = 3
       
       for (let i = 0; i < uploadIterations; i++) {
         if (abortRef.current) break
         
         // Create random data of varying sizes
-        const sizes = [200000, 400000, 600000, 800000] // 200KB to 800KB
+        const sizes = [200000, 400000, 600000] // 200KB to 600KB
         const uploadSize = sizes[i % sizes.length]
         const uploadData = new ArrayBuffer(uploadSize)
         const view = new Uint8Array(uploadData)
@@ -252,7 +231,7 @@ export default function SpeedTest() {
         }
         
         // Smooth delay between uploads
-        await new Promise(r => setTimeout(r, 600))
+        await new Promise(r => setTimeout(r, 300))
       }
       
       // Final calculation - use median for accuracy
@@ -265,7 +244,7 @@ export default function SpeedTest() {
         setUploadSpeed(Math.round(downloadSpeed * 0.15 * 10) / 10)
       }
 
-      await new Promise(r => setTimeout(r, 500))
+      await new Promise(r => setTimeout(r, 200))
       setStatus('complete')
       setTestPhase('')
       
