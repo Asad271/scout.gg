@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 export default function SpeedTest() {
   const [status, setStatus] = useState('idle')
@@ -10,9 +10,42 @@ export default function SpeedTest() {
   const [jitter, setJitter] = useState(0)
   const [testPhase, setTestPhase] = useState('')
   const [testRunning, setTestRunning] = useState(false)
+  const [displaySpeed, setDisplaySpeed] = useState(0)
   
   const gaugeRef = useRef(null)
   const abortRef = useRef(false)
+  const targetSpeedRef = useRef(0)
+  
+  // Animated number counting effect
+  useEffect(() => {
+    if (status !== 'testing') {
+      setDisplaySpeed(testPhase === 'ping' ? ping : testPhase === 'download' ? downloadSpeed : testPhase === 'upload' ? uploadSpeed : 0)
+      return
+    }
+    
+    const target = testPhase === 'ping' ? ping : testPhase === 'download' ? downloadSpeed : testPhase === 'upload' ? uploadSpeed : 0
+    targetSpeedRef.current = target
+    
+    if (target === 0) return
+    
+    const duration = 800
+    const steps = 20
+    const stepTime = duration / steps
+    const increment = target / steps
+    let current = 0
+    
+    const interval = setInterval(() => {
+      current += increment
+      if (current >= target) {
+        setDisplaySpeed(testPhase === 'ping' ? ping : testPhase === 'download' ? downloadSpeed : testPhase === 'upload' ? uploadSpeed : 0)
+        clearInterval(interval)
+      } else {
+        setDisplaySpeed(Math.round(current * 10) / 10)
+      }
+    }, stepTime)
+    
+    return () => clearInterval(interval)
+  }, [downloadSpeed, uploadSpeed, ping, status, testPhase])
 
   const getGamingRating = () => {
     if (ping <= 20 && downloadSpeed >= 100) return { text: 'Excellent', color: '#00ff88' }
@@ -62,13 +95,27 @@ export default function SpeedTest() {
         'https://unpkg.com/react@18/umd/react.production.min.js'  // ~130KB
       ]
 
-      // PING TEST - measure real latency
+      // PING TEST - measure real latency with smooth progress
       setTestPhase('ping')
+      setDownloadSpeed(0)
+      setUploadSpeed(0)
+      setPing(0)
+      setJitter(0)
+      
       const pingResults = []
       const jitterResults = []
+      const pingIterations = 12
       
-      for (let i = 0; i < 10; i++) {
+      // Warm-up ping
+      try {
+        await fetch('https://cloudflare.com/cdn-cgi/trace', { mode: 'no-cors', cache: 'no-store' })
+      } catch(e) {}
+      
+      await new Promise(r => setTimeout(r, 500))
+      
+      for (let i = 0; i < pingIterations; i++) {
         if (abortRef.current) break
+        
         const start = performance.now()
         try {
           await fetch('https://cloudflare.com/cdn-cgi/trace', { 
@@ -78,36 +125,57 @@ export default function SpeedTest() {
           const end = performance.now()
           const pingTime = end - start
           pingResults.push(pingTime)
+          
+          // Calculate running average
+          const runningAvg = Math.round(pingResults.reduce((a, b) => a + b, 0) / pingResults.length)
+          setPing(runningAvg)
+          
           if (i > 0) {
             jitterResults.push(Math.abs(pingTime - pingResults[i-1]))
           }
         } catch (e) {
-          // Use fallback timing
           const end = performance.now()
           pingResults.push(end - start)
         }
-        await new Promise(r => setTimeout(r, 100))
+        
+        // Smooth delay between pings
+        await new Promise(r => setTimeout(r, 200))
       }
 
-      const avgPing = pingResults.length > 0 
-        ? Math.round(pingResults.reduce((a, b) => a + b, 0) / pingResults.length)
+      const validPings = pingResults.filter(p => p < 500) // Filter out anomalies
+      const avgPing = validPings.length > 0 
+        ? Math.round(validPings.reduce((a, b) => a + b, 0) / validPings.length)
         : 0
+      
       const avgJitter = jitterResults.length > 0
         ? Math.round(jitterResults.reduce((a, b) => a + b, 0) / jitterResults.length)
         : 20
       
       setPing(avgPing)
       setJitter(Math.min(avgJitter, 100))
-      await new Promise(r => setTimeout(r, 300))
+      await new Promise(r => setTimeout(r, 800))
 
-      // DOWNLOAD TEST - measure real download speed
+      // DOWNLOAD TEST - measure real download speed with smooth progression
       setTestPhase('download')
       let totalBytes = 0
       let totalDuration = 0
+      const downloadSpeeds = []
+      const downloadIterations = 8
       
-      for (let i = 0; i < 3; i++) {
+      // Warm-up download
+      try {
+        await fetch(testFiles[0] + '&r=' + Math.random(), { cache: 'no-store' })
+      } catch(e) {}
+      
+      await new Promise(r => setTimeout(r, 500))
+      
+      for (let i = 0; i < downloadIterations; i++) {
         if (abortRef.current) break
-        const url = testFiles[i % testFiles.length] + (i > 0 ? `&r=${Math.random()}` : '')
+        
+        const testSizes = [5000000, 10000000, 15000000, 20000000] // 5MB, 10MB, 15MB, 20MB
+        const size = testSizes[i % testSizes.length]
+        const url = `https://speed.cloudflare.com/__down?bytes=${size}&r=${Math.random()}`
+        
         const start = performance.now()
         
         try {
@@ -115,37 +183,47 @@ export default function SpeedTest() {
           const blob = await response.blob()
           const end = performance.now()
           
-          totalBytes += blob.size
-          totalDuration += (end - start)
+          const bytes = blob.size
+          const duration = (end - start) / 1000 // seconds
           
-          // Calculate and show progress
-          const bitsLoaded = blob.size * 8
-          const durationSec = (end - start) / 1000
-          const currentSpeed = (bitsLoaded / durationSec) / (1024 * 1024) // Mbps
+          totalBytes += bytes
+          totalDuration += duration
           
-          setDownloadSpeed(Math.round(currentSpeed * 10) / 10)
+          // Calculate speed in Mbps
+          const speed = (bytes * 8) / (duration * 1000000)
+          downloadSpeeds.push(speed)
+          
+          // Calculate running average
+          const avgSpeed = downloadSpeeds.reduce((a, b) => a + b, 0) / downloadSpeeds.length
+          setDownloadSpeed(Math.round(avgSpeed * 10) / 10)
         } catch (e) {
           console.warn('Download test chunk failed:', e)
         }
+        
+        // Smooth delay between tests
+        await new Promise(r => setTimeout(r, 800))
       }
       
-      // Calculate average download speed
-      if (totalDuration > 0) {
-        const avgSpeed = (totalBytes * 8 / (totalDuration / 1000)) / (1024 * 1024)
-        setDownloadSpeed(Math.round(avgSpeed * 10) / 10)
+      // Final calculation - use median for accuracy
+      if (downloadSpeeds.length > 0) {
+        const sorted = [...downloadSpeeds].sort((a, b) => a - b)
+        const median = sorted[Math.floor(sorted.length / 2)]
+        setDownloadSpeed(Math.round(median * 10) / 10)
       }
-      await new Promise(r => setTimeout(r, 300))
+      
+      await new Promise(r => setTimeout(r, 600))
 
-      // UPLOAD TEST - measure upload using Cloudflare trace endpoint (CORS-friendly)
+      // UPLOAD TEST - measure upload with smooth progression
       setTestPhase('upload')
-      const uploadSize = 200000 // 200KB chunks
-      let uploadBytes = 0
-      let uploadDuration = 0
+      const uploadSpeeds = []
+      const uploadIterations = 6
       
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < uploadIterations; i++) {
         if (abortRef.current) break
         
-        // Create random data
+        // Create random data of varying sizes
+        const sizes = [200000, 400000, 600000, 800000] // 200KB to 800KB
+        const uploadSize = sizes[i % sizes.length]
         const uploadData = new ArrayBuffer(uploadSize)
         const view = new Uint8Array(uploadData)
         for (let j = 0; j < uploadSize; j++) {
@@ -154,7 +232,6 @@ export default function SpeedTest() {
         
         const start = performance.now()
         try {
-          // Use no-cors mode to avoid CORS issues
           await fetch('https://cloudflare.com/cdn-cgi/trace', {
             method: 'POST',
             body: uploadData,
@@ -163,29 +240,32 @@ export default function SpeedTest() {
           })
           const end = performance.now()
           
-          uploadBytes += uploadSize
-          uploadDuration += (end - start)
+          const duration = (end - start) / 1000 // seconds
+          const speed = (uploadSize * 8) / (duration * 1000000) // Mbps
+          uploadSpeeds.push(speed)
           
-          const currentSpeed = (uploadSize * 8 / ((end - start) / 1000)) / (1024 * 1024)
-          setUploadSpeed(Math.round(currentSpeed * 10) / 10)
+          // Calculate running average
+          const avgSpeed = uploadSpeeds.reduce((a, b) => a + b, 0) / uploadSpeeds.length
+          setUploadSpeed(Math.round(avgSpeed * 10) / 10)
         } catch (e) {
           console.warn('Upload chunk failed:', e)
-          // Still count time for failed attempts
-          const end = performance.now()
-          uploadDuration += (end - start)
         }
-        await new Promise(r => setTimeout(r, 50))
+        
+        // Smooth delay between uploads
+        await new Promise(r => setTimeout(r, 600))
       }
       
-      // Calculate average upload speed
-      if (uploadDuration > 0 && uploadBytes > 0) {
-        const avgSpeed = (uploadBytes * 8 / (uploadDuration / 1000)) / (1024 * 1024)
-        setUploadSpeed(Math.round(avgSpeed * 10) / 10)
+      // Final calculation - use median for accuracy
+      if (uploadSpeeds.length > 0) {
+        const sorted = [...uploadSpeeds].sort((a, b) => a - b)
+        const median = sorted[Math.floor(sorted.length / 2)]
+        setUploadSpeed(Math.round(median * 10) / 10)
       } else {
         // Fallback: estimate upload as 10-20% of download (typical for most connections)
         setUploadSpeed(Math.round(downloadSpeed * 0.15 * 10) / 10)
       }
 
+      await new Promise(r => setTimeout(r, 500))
       setStatus('complete')
       setTestPhase('')
       
@@ -211,11 +291,11 @@ export default function SpeedTest() {
 
   const getPhaseLabel = () => {
     if (status === 'idle') return 'Ready to Test'
-    if (status === 'complete') return 'Test Complete'
+    if (status === 'complete') return '✓ Test Complete'
+    if (testPhase === 'ping') return 'Testing Latency...'
     if (testPhase === 'download') return 'Testing Download...'
     if (testPhase === 'upload') return 'Testing Upload...'
-    if (testPhase === 'ping') return 'Testing Ping...'
-    return 'Testing...'
+    return 'Starting...'
   }
 
   const getGaugeColor = () => {
@@ -327,8 +407,8 @@ export default function SpeedTest() {
                   cx="100" cy="100" r="85"
                   style={{ 
                     stroke: getGaugeColor(),
-                    strokeDasharray: `${Math.min((downloadSpeed / 200) * 534, 534)} 534`,
-                    transition: 'stroke-dasharray 0.3s ease, stroke 0.3s ease'
+                    strokeDasharray: `${Math.min((testPhase === 'ping' ? ping : testPhase === 'download' ? downloadSpeed : testPhase === 'upload' ? uploadSpeed : 0) / 200 * 534, 534)} 534`,
+                    transition: 'stroke-dasharray 0.5s ease, stroke 0.3s ease'
                   }}
                 />
               </svg>
@@ -336,9 +416,9 @@ export default function SpeedTest() {
               <div className="gauge-center">
                 <div className="speed-display">
                   <span className={`speed-number ${status === 'testing' ? 'animating' : ''}`}>
-                    {downloadSpeed.toFixed(1)}
+                    {status === 'testing' ? displaySpeed.toFixed(1) : (testPhase === 'ping' ? ping : testPhase === 'download' ? downloadSpeed : testPhase === 'upload' ? uploadSpeed : 0).toFixed(1)}
                   </span>
-                  <span className="speed-unit">Mbps</span>
+                  <span className="speed-unit">{testPhase === 'ping' ? 'ms' : 'Mbps'}</span>
                 </div>
                 <div className="speed-label">{getPhaseLabel()}</div>
               </div>
