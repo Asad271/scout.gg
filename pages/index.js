@@ -463,6 +463,10 @@ export default function SpeedTest() {
           min-height: 100vh;
           display: flex;
           flex-direction: column;
+          background: 
+            radial-gradient(ellipse at top, rgba(0, 255, 136, 0.03) 0%, transparent 50%),
+            radial-gradient(ellipse at bottom, rgba(0, 200, 255, 0.02) 0%, transparent 50%),
+            #0a0a0a;
         }
 
         .header {
@@ -472,6 +476,7 @@ export default function SpeedTest() {
           padding: 20px 40px;
           background: rgba(10, 10, 10, 0.95);
           border-bottom: 1px solid #1a1a1a;
+          backdrop-filter: blur(10px);
         }
 
         .logo {
@@ -487,7 +492,15 @@ export default function SpeedTest() {
           text-decoration: none;
         }
 
-        .logo-icon { font-size: 28px; }
+        .logo-icon { 
+          font-size: 28px;
+          animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+          0%, 100% { filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.5)); }
+          50% { filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.8)); }
+        }
 
         .logo-text {
           font-size: 24px;
@@ -507,6 +520,12 @@ export default function SpeedTest() {
           text-decoration: none;
           font-weight: 500;
           font-size: 16px;
+          transition: all 0.3s ease;
+          position: relative;
+        }
+
+        .nav-link:hover {
+          text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
         }
 
         .main {
@@ -528,6 +547,15 @@ export default function SpeedTest() {
           font-weight: 800;
           margin-bottom: 12px;
           letter-spacing: -0.5px;
+          background: linear-gradient(135deg, #fff 0%, #00ff88 50%, #fff 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-size: 200% auto;
+          animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+          to { background-position: 200% center; }
         }
 
         .subtitle {
@@ -551,8 +579,26 @@ export default function SpeedTest() {
           align-items: center;
           justify-content: center;
           position: relative;
-          background: radial-gradient(circle at center, #111, #0a0a0a);
+          background: radial-gradient(circle at center, #1a1a1a, #0a0a0a);
           margin-bottom: 40px;
+          box-shadow: 
+            0 0 30px rgba(0, 0, 0, 0.5),
+            inset 0 0 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .gauge::before {
+          content: '';
+          position: absolute;
+          inset: -3px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #00ff88, transparent, #00ff88);
+          z-index: -1;
+          opacity: 0.3;
+          animation: rotate-gradient 4s linear infinite;
+        }
+
+        @keyframes rotate-gradient {
+          to { transform: rotate(360deg); }
         }
 
         .gauge-svg {
@@ -566,14 +612,15 @@ export default function SpeedTest() {
 
         .gauge-bg {
           fill: none;
-          stroke: #222;
-          stroke-width: 6;
+          stroke: #1a1a1a;
+          stroke-width: 8;
         }
 
         .gauge-progress {
           fill: none;
-          stroke-width: 6;
+          stroke-width: 8;
           stroke-linecap: round;
+          filter: drop-shadow(0 0 5px currentColor);
         }
 
         .gauge-center {
@@ -594,6 +641,7 @@ export default function SpeedTest() {
           color: #fff;
           min-width: 140px;
           text-align: center;
+          text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
         }
 
         .speed-number.animating {
@@ -601,8 +649,8 @@ export default function SpeedTest() {
         }
 
         @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.7; }
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.7; transform: scale(1.02); }
         }
 
         .speed-unit {
@@ -619,8 +667,8 @@ export default function SpeedTest() {
         }
 
         .start-btn {
-          padding: 16px 50px;
-          font-size: 16px;
+          padding: 18px 60px;
+          font-size: 18px;
           font-weight: 700;
           background: linear-gradient(135deg, #00ff88, #00cc66);
           border: none;
@@ -630,11 +678,28 @@ export default function SpeedTest() {
           transition: all 0.3s ease;
           text-transform: uppercase;
           letter-spacing: 2px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .start-btn::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+          transition: left 0.5s ease;
+        }
+
+        .start-btn:hover:not(:disabled)::before {
+          left: 100%;
         }
 
         .start-btn:hover:not(:disabled) {
           transform: scale(1.05);
-          box-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
+          box-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
         }
 
         .start-btn:disabled {
@@ -644,6 +709,12 @@ export default function SpeedTest() {
 
         .start-btn.testing {
           background: linear-gradient(135deg, #ffaa00, #ff6600);
+          animation: pulse-btn 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse-btn {
+          0%, 100% { box-shadow: 0 0 20px rgba(255, 170, 0, 0.3); }
+          50% { box-shadow: 0 0 40px rgba(255, 170, 0, 0.5); }
         }
 
         .powered-by {
@@ -662,12 +733,36 @@ export default function SpeedTest() {
         }
 
         .stat-item {
-          background: #111;
+          background: linear-gradient(145deg, #141414, #0e0e0e);
           border: 1px solid #222;
-          border-radius: 12px;
+          border-radius: 16px;
           padding: 24px 20px;
           text-align: center;
           transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .stat-item::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, #00ff88, transparent);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .stat-item:hover {
+          transform: translateY(-5px);
+          border-color: #333;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-item:hover::before {
+          opacity: 1;
         }
 
         .stat-label {
@@ -691,21 +786,30 @@ export default function SpeedTest() {
         }
 
         .result-card {
-          background: #111;
+          background: linear-gradient(145deg, #141414, #0e0e0e);
           border: 2px solid #00ff88;
-          border-radius: 16px;
-          padding: 30px;
+          border-radius: 20px;
+          padding: 40px;
           text-align: center;
           margin-bottom: 50px;
-          animation: slideIn 0.5s ease;
+          animation: slideIn 0.6s ease, glow 2s ease-in-out infinite;
         }
 
         @keyframes slideIn {
-          from { opacity: 0; transform: translateY(20px); }
+          from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: translateY(0); }
         }
 
-        .result-rating { font-size: 36px; font-weight: 800; }
+        @keyframes glow {
+          0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 136, 0.2); }
+          50% { box-shadow: 0 0 40px rgba(0, 255, 136, 0.4); }
+        }
+
+        .result-rating { 
+          font-size: 36px; 
+          font-weight: 800; 
+          text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
         .result-desc { font-size: 16px; color: #666; margin-top: 8px; }
 
         .info-section { margin-top: 60px; }
@@ -723,15 +827,36 @@ export default function SpeedTest() {
         }
 
         .info-card {
-          background: #111;
+          background: linear-gradient(145deg, #141414, #0e0e0e);
           border: 1px solid #222;
-          border-radius: 12px;
+          border-radius: 16px;
           padding: 30px 24px;
           text-align: center;
+          transition: all 0.3s ease;
         }
 
-        .info-icon { font-size: 36px; margin-bottom: 16px; }
-        .info-card h3 { font-size: 18px; margin-bottom: 20px; }
+        .info-card:hover {
+          transform: translateY(-5px);
+          border-color: #00ff88;
+          box-shadow: 0 15px 40px rgba(0, 255, 136, 0.1);
+        }
+
+        .info-icon { 
+          font-size: 36px; 
+          margin-bottom: 16px;
+          transition: transform 0.3s ease;
+        }
+
+        .info-card:hover .info-icon {
+          transform: scale(1.1);
+        }
+
+        .info-card h3 { 
+          font-size: 18px; 
+          margin-bottom: 20px;
+          color: #fff;
+        }
+
         .info-card ul { list-style: none; text-align: left; }
 
         .info-card li {
@@ -741,10 +866,15 @@ export default function SpeedTest() {
           padding: 10px 0;
           border-bottom: 1px solid #1a1a1a;
           line-height: 1.5;
+          transition: color 0.3s ease;
+        }
+
+        .info-card li:hover {
+          color: #00ff88;
         }
 
         .stat-item {
-          background: #111;
+          background: linear-gradient(145deg, #141414, #0e0e0e);
           border: 1px solid #222;
           border-radius: 12px;
           padding: 20px;
@@ -754,8 +884,8 @@ export default function SpeedTest() {
 
         .stat-item.active {
           border-color: #ffaa00;
-          background: #1a1508;
-          box-shadow: 0 0 20px rgba(255, 170, 0, 0.2);
+          background: linear-gradient(145deg, #1a1508, #151208);
+          box-shadow: 0 0 25px rgba(255, 170, 0, 0.2);
         }
 
         .stat-label {
