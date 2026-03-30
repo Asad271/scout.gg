@@ -82,21 +82,27 @@ export default function About() {
           </div>
 
           <div className="content-card">
-            <h2>Is Scout.gg Free?</h2>
+            <h2>Our Vision</h2>
             <p>
-              <strong>100% Free.</strong> No registration required, no ads (for now), 
-              no hidden fees. We believe everyone deserves to know their true internet speed.
+              We believe every gamer deserves to know their true internet speed. 
+              Scout.gg is built to give you accurate, honest results without any strings attached.
+            </p>
+            <p>
+              Our goal is to become the go-to speed test for gamers worldwide, 
+              helping players make informed decisions about their internet connection.
             </p>
           </div>
 
           <div className="content-card">
-            <h2>Contact Us</h2>
+            <h2>Join Our Community</h2>
             <p>
-              Have suggestions? Found a bug? Want to partner? We'd love to hear from you.
+              Scout.gg is growing! Connect with us to stay updated:
             </p>
-            <p className="contact-email">
-              Email: hello@scout.gg
-            </p>
+            <ul className="feature-list">
+              <li>Follow for updates on new features</li>
+              <li>Share your feedback and suggestions</li>
+              <li>Help us improve for gamers everywhere</li>
+            </ul>
           </div>
         </section>
       </main>
@@ -177,7 +183,7 @@ export default function About() {
         .content-section {
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: 32px;
         }
 
         .content-card {
