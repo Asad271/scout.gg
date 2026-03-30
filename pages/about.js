@@ -148,8 +148,13 @@ export default function About() {
           color: #666;
           text-decoration: none;
           font-weight: 500;
-          margin-left: 20px;
+          margin-left: 32px;
+          font-size: 15px;
           transition: color 0.3s;
+        }
+
+        .nav-link:first-child {
+          margin-left: 0;
         }
 
         .nav-link:hover, .nav-link.active {
