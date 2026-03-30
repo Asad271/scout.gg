@@ -9,6 +9,7 @@ export default function About() {
         <meta name="description" content="Learn about Scout.gg - free internet speed test for gamers. Test ping, download, upload, latency and jitter. Find the best internet speed for gaming." />
         <meta name="keywords" content="about speed test, about scout.gg, gaming speed test, internet speed test, best internet speed for gaming, low ping tips, ping health check" />
         <meta name="robots" content="index, follow" />
+        <meta name="google-site-verification" content="MCJ9PzqY3o-lhn2tSqqAb8Kcqo6SiSUdpYTL0dWLUgI" />
         <link rel="canonical" href="https://scout-gg.vercel.app/about" />
         <meta property="og:title" content="About Scout.gg - Free Speed Test for Gamers" />
         <meta property="og:description" content="Learn about Scout.gg - a free internet speed test designed specifically for gamers." />

@@ -9,6 +9,7 @@ export default function FixInternetLag() {
         <meta name="description" content="Learn how to fix internet lag for gaming. Reduce latency, lower ping, and eliminate lag with these proven tips and solutions." />
         <meta name="keywords" content="how to fix internet lag, reduce gaming lag, fix lag, internet latency, low ping tips, ping optimization, reduce lag" />
         <meta name="robots" content="index, follow" />
+        <meta name="google-site-verification" content="MCJ9PzqY3o-lhn2tSqqAb8Kcqo6SiSUdpYTL0dWLUgI" />
         <link rel="canonical" href="https://scout-gg.vercel.app/blog/how-to-fix-internet-lag" />
         <meta property="og:title" content="How to Fix Internet Lag for Gaming | Scout.gg" />
         <meta property="og:description" content="Learn how to fix internet lag for gaming with these proven tips." />

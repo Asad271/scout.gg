@@ -234,6 +234,7 @@ export default function SpeedTest() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Scout.gg" />
+        <meta name="google-site-verification" content="MCJ9PzqY3o-lhn2tSqqAb8Kcqo6SiSUdpYTL0dWLUgI" />
         <link rel="canonical" href="https://scout-gg.vercel.app/" />
         
         {/* Open Graph for Facebook, LinkedIn, etc. */}

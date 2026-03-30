@@ -33,6 +33,7 @@ export default function Blog() {
         <meta name="description" content="Tips and guides about internet speed, ping optimization, reduce gaming lag, and improve gaming performance." />
         <meta name="keywords" content="gaming blog, speed test tips, ping optimization, gaming internet, reduce gaming lag, how to fix internet lag, low ping tips, best internet speed for gaming" />
         <meta name="robots" content="index, follow" />
+        <meta name="google-site-verification" content="MCJ9PzqY3o-lhn2tSqqAb8Kcqo6SiSUdpYTL0dWLUgI" />
         <link rel="canonical" href="https://scout-gg.vercel.app/blog" />
         <meta property="og:title" content="Blog | Scout.gg" />
         <meta property="og:description" content="Tips and guides about internet speed for gaming." />

@@ -9,6 +9,7 @@ export default function ImprovePing() {
         <meta name="description" content="Learn how to reduce ping and improve your gaming experience. Tips for lower latency, better connection, and smoother gameplay." />
         <meta name="keywords" content="how to improve ping, reduce latency, gaming ping, lower ping, gaming connection" />
         <meta name="robots" content="index, follow" />
+        <meta name="google-site-verification" content="MCJ9PzqY3o-lhn2tSqqAb8Kcqo6SiSUdpYTL0dWLUgI" />
         <link rel="canonical" href="https://scout-gg.vercel.app/blog/how-to-improve-ping" />
         <meta property="og:title" content="How to Improve Your Ping for Gaming | Scout.gg" />
         <meta property="og:description" content="Learn how to reduce ping and improve your gaming experience." />
