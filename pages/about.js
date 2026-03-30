@@ -166,43 +166,46 @@ export default function About() {
 
         .hero {
           text-align: center;
-          margin-bottom: 40px;
+          margin-bottom: 60px;
+          padding: 20px 0;
         }
 
         .title {
-          font-size: 42px;
+          font-size: 48px;
           font-weight: 800;
-          margin-bottom: 8px;
+          margin-bottom: 12px;
+          letter-spacing: -1px;
         }
 
         .subtitle {
-          font-size: 18px;
+          font-size: 20px;
           color: #666;
         }
 
         .content-section {
           display: flex;
           flex-direction: column;
-          gap: 32px;
+          gap: 40px;
         }
 
         .content-card {
           background: #111;
           border: 1px solid #222;
           border-radius: 12px;
-          padding: 30px;
+          padding: 36px;
         }
 
         .content-card h2 {
-          font-size: 24px;
-          margin-bottom: 16px;
+          font-size: 26px;
+          margin-bottom: 20px;
           color: #00ff88;
         }
 
         .content-card p {
           color: #aaa;
-          line-height: 1.7;
-          margin-bottom: 12px;
+          line-height: 1.9;
+          margin-bottom: 18px;
+          font-size: 16px;
         }
 
         .content-card strong {
@@ -211,13 +214,15 @@ export default function About() {
 
         .feature-list {
           list-style: none;
-          margin-top: 12px;
+          margin-top: 20px;
         }
 
         .feature-list li {
           color: #aaa;
-          padding: 8px 0;
+          padding: 14px 0;
           border-bottom: 1px solid #1a1a1a;
+          font-size: 15px;
+          line-height: 1.6;
         }
 
         .feature-list li:last-child {
