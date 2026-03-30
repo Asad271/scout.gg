@@ -1,0 +1,7 @@
+node_modules/
+.next/
+.next.zip
+*.log
+.DS_Store
+.env*.local
+vercel.json

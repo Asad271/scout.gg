@@ -1,0 +1,49 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a"/>
+      <stop offset="100%" style="stop-color:#1a1a1a"/>
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00ff88"/>
+      <stop offset="100%" style="stop-color:#00cc66"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Grid pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#222" stroke-width="0.5"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.5"/>
+  
+  <!-- Logo/Brand -->
+  <text x="600" y="120" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="800" fill="url(#accentGradient)">⚡ Scout.gg</text>
+  
+  <!-- Main Title -->
+  <text x="600" y="280" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="700" fill="#ffffff">Internet Speed Test</text>
+  <text x="600" y="340" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="32" fill="#666666">For Gamers, By Gamers</text>
+  
+  <!-- Feature boxes -->
+  <rect x="150" y="420" width="200" height="120" rx="12" fill="#111111" stroke="#333333" stroke-width="2"/>
+  <text x="250" y="470" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#666666">PING</text>
+  <text x="250" y="510" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700" fill="#00ff88">0 ms</text>
+  
+  <rect x="400" y="420" width="200" height="120" rx="12" fill="#111111" stroke="#333333" stroke-width="2"/>
+  <text x="500" y="470" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#666666">DOWNLOAD</text>
+  <text x="500" y="510" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700" fill="#00ff88">0 Mbps</text>
+  
+  <rect x="650" y="420" width="200" height="120" rx="12" fill="#111111" stroke="#333333" stroke-width="2"/>
+  <text x="750" y="470" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#666666">UPLOAD</text>
+  <text x="750" y="510" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700" fill="#00ff88">0 Mbps</text>
+  
+  <rect x="900" y="420" width="200" height="120" rx="12" fill="#111111" stroke="#333333" stroke-width="2"/>
+  <text x="1000" y="470" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="#666666">JITTER</text>
+  <text x="1000" y="510" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700" fill="#00ff88">0 ms</text>
+  
+  <!-- Call to action -->
+  <rect x="450" y="560" width="300" height="50" rx="25" fill="url(#accentGradient)"/>
+  <text x="600" y="593" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#0a0a0a">START TEST</text>
+</svg>
