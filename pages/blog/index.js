@@ -122,31 +122,33 @@ export default function Blog() {
 
         .hero {
           text-align: center;
-          margin-bottom: 40px;
+          margin-bottom: 60px;
+          padding: 20px 0;
         }
 
         .title {
-          font-size: 42px;
+          font-size: 48px;
           font-weight: 800;
-          margin-bottom: 8px;
+          margin-bottom: 12px;
+          letter-spacing: -0.5px;
         }
 
         .subtitle {
-          font-size: 18px;
+          font-size: 20px;
           color: #666;
         }
 
         .posts-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 24px;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 32px;
         }
 
         .post-card {
           background: #111;
           border: 1px solid #222;
           border-radius: 12px;
-          padding: 30px;
+          padding: 36px;
           text-decoration: none;
           transition: all 0.3s;
         }
@@ -158,35 +160,35 @@ export default function Blog() {
 
         .post-meta {
           display: flex;
-          gap: 12px;
-          margin-bottom: 16px;
+          gap: 16px;
+          margin-bottom: 20px;
         }
 
         .category {
           color: #00ff88;
-          font-size: 11px;
+          font-size: 12px;
           text-transform: uppercase;
           letter-spacing: 1px;
         }
 
         .date {
           color: #666;
-          font-size: 11px;
+          font-size: 12px;
         }
 
         .post-title {
           color: #fff;
-          font-size: 20px;
+          font-size: 22px;
           font-weight: 700;
-          margin-bottom: 12px;
-          line-height: 1.4;
+          margin-bottom: 16px;
+          line-height: 1.5;
         }
 
         .post-excerpt {
           color: #888;
-          font-size: 14px;
-          line-height: 1.6;
-          margin-bottom: 16px;
+          font-size: 15px;
+          line-height: 1.7;
+          margin-bottom: 20px;
         }
 
         .read-more {

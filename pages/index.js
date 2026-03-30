@@ -502,17 +502,19 @@ export default function SpeedTest() {
 
         .hero {
           text-align: center;
-          margin-bottom: 40px;
+          margin-bottom: 50px;
+          padding: 20px 0;
         }
 
         .title {
-          font-size: 42px;
+          font-size: 46px;
           font-weight: 800;
-          margin-bottom: 8px;
+          margin-bottom: 12px;
+          letter-spacing: -0.5px;
         }
 
         .subtitle {
-          font-size: 18px;
+          font-size: 20px;
           color: #666;
         }
 
@@ -520,12 +522,12 @@ export default function SpeedTest() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin-bottom: 40px;
+          margin-bottom: 50px;
         }
 
         .gauge {
-          width: 280px;
-          height: 280px;
+          width: 300px;
+          height: 300px;
           border-radius: 50%;
           border: 6px solid #333;
           display: flex;
@@ -533,7 +535,7 @@ export default function SpeedTest() {
           justify-content: center;
           position: relative;
           background: radial-gradient(circle at center, #111, #0a0a0a);
-          margin-bottom: 30px;
+          margin-bottom: 40px;
         }
 
         .gauge-svg {
@@ -638,8 +640,90 @@ export default function SpeedTest() {
         .stats-row {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 15px;
-          margin-bottom: 30px;
+          gap: 20px;
+          margin-bottom: 50px;
+        }
+
+        .stat-item {
+          background: #111;
+          border: 1px solid #222;
+          border-radius: 12px;
+          padding: 24px 20px;
+          text-align: center;
+          transition: all 0.3s ease;
+        }
+
+        .stat-label {
+          font-size: 12px;
+          color: #666;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin-bottom: 12px;
+        }
+
+        .stat-value {
+          font-size: 28px;
+          font-weight: 700;
+          color: #fff;
+        }
+
+        .stat-value span {
+          font-size: 13px;
+          color: #666;
+          font-weight: 400;
+        }
+
+        .result-card {
+          background: #111;
+          border: 2px solid #00ff88;
+          border-radius: 16px;
+          padding: 30px;
+          text-align: center;
+          margin-bottom: 50px;
+          animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-rating { font-size: 36px; font-weight: 800; }
+        .result-desc { font-size: 16px; color: #666; margin-top: 8px; }
+
+        .info-section { margin-top: 60px; }
+
+        .info-section h2 {
+          font-size: 28px;
+          text-align: center;
+          margin-bottom: 32px;
+        }
+
+        .info-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+        }
+
+        .info-card {
+          background: #111;
+          border: 1px solid #222;
+          border-radius: 12px;
+          padding: 30px 24px;
+          text-align: center;
+        }
+
+        .info-icon { font-size: 36px; margin-bottom: 16px; }
+        .info-card h3 { font-size: 18px; margin-bottom: 20px; }
+        .info-card ul { list-style: none; text-align: left; }
+
+        .info-card li {
+          font-size: 14px;
+          color: #666;
+          margin-bottom: 12px;
+          padding: 10px 0;
+          border-bottom: 1px solid #1a1a1a;
+          line-height: 1.5;
         }
 
         .stat-item {
