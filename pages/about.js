@@ -27,6 +27,7 @@ export default function About() {
         </div>
         <nav className="nav">
           <Link href="/" className="nav-link">Speed Test</Link>
+          <Link href="/blog" className="nav-link">Blog</Link>
           <Link href="/about" className="nav-link active">About</Link>
         </nav>
       </header>

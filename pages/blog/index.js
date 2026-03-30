@@ -49,6 +49,7 @@ export default function Blog() {
         </div>
         <nav className="nav">
           <Link href="/" className="nav-link">Speed Test</Link>
+          <Link href="/blog" className="nav-link">Blog</Link>
           <Link href="/about" className="nav-link">About</Link>
         </nav>
       </header>
