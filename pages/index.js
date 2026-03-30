@@ -974,26 +974,6 @@ export default function SpeedTest() {
           gap: 15px;
         }
 
-        .info-card {
-          background: #111;
-          border: 1px solid #222;
-          border-radius: 12px;
-          padding: 24px;
-          text-align: center;
-        }
-
-        .info-icon { font-size: 32px; margin-bottom: 12px; }
-        .info-card h3 { font-size: 16px; margin-bottom: 16px; }
-        .info-card ul { list-style: none; text-align: left; }
-
-        .info-card li {
-          font-size: 13px;
-          color: #666;
-          margin-bottom: 8px;
-          padding: 6px 0;
-          border-bottom: 1px solid #1a1a1a;
-        }
-
         .green { color: #00ff88; }
         .yellow { color: #ffaa00; }
         .red { color: #ff4444; }
