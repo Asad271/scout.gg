@@ -254,17 +254,18 @@ export default function SpeedTest() {
   return (
     <div className="container">
       <Head>
-        <title>Free Internet Speed Test | Ping, Download, Upload & Jitter Test</title>
-        <meta name="description" content="Free internet speed test for gamers. Check your ping, download speed, upload speed, latency and jitter. Test your internet connection now!" />
+        <title>Scout.gg - Free Internet Speed Test for Gamers | Ping, Download, Upload</title>
+        <meta name="description" content="Scout.gg - Free internet speed test for gamers. Check your ping, download speed, upload speed, latency and jitter. Test your internet connection now!" />
         <meta name="keywords" content="speed test, internet speed test, ping test, download speed test, upload speed test, latency test, jitter test, check internet speed, gaming speed test, speed test for gamers, check ping online, health check ping, how to check my ping, gaming internet speed, low ping, fix internet lag" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Scout.gg" />
         <meta name="google-site-verification" content="MCJ9PzqY3o-lhn2tSqqAb8Kcqo6SiSUdpYTL0dWLUgI" />
         <link rel="canonical" href="https://scout-gg.vercel.app/" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         
         {/* Open Graph for Facebook, LinkedIn, etc. */}
-        <meta property="og:title" content="Free Speed Test for Gamers | Scout.gg" />
+        <meta property="og:title" content="Scout.gg - Free Internet Speed Test for Gamers" />
         <meta property="og:description" content="Test your internet speed optimized for gaming. Real-time ping, download, upload, and jitter measurements." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://scout-gg.vercel.app/" />
@@ -276,7 +277,7 @@ export default function SpeedTest() {
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Free Speed Test for Gamers | Scout.gg" />
+        <meta name="twitter:title" content="Scout.gg - Free Internet Speed Test for Gamers" />
         <meta name="twitter:description" content="Test your internet speed optimized for gaming. Real measurements, not estimates." />
         <meta name="twitter:image" content="https://scout-gg.vercel.app/og-image.svg" />
         
@@ -293,7 +294,7 @@ export default function SpeedTest() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebApplication",
-              "name": "Scout.gg Speed Test",
+              "name": "Scout.gg",
               "url": "https://scout-gg.vercel.app/",
               "description": "Free internet speed test for gamers. Test your ping, download, upload, and jitter with real-time measurements.",
               "applicationCategory": "UtilityApplication",

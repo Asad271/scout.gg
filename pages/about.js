@@ -5,13 +5,14 @@ export default function About() {
   return (
     <div className="container">
       <Head>
-        <title>About | Scout.gg - Free Internet Speed Test for Gamers</title>
+        <title>Scout.gg - About | Free Internet Speed Test for Gamers</title>
         <meta name="description" content="Learn about Scout.gg - free internet speed test for gamers. Test ping, download, upload, latency and jitter. Find the best internet speed for gaming." />
         <meta name="keywords" content="about speed test, about scout.gg, gaming speed test, internet speed test, best internet speed for gaming, low ping tips, ping health check" />
         <meta name="robots" content="index, follow" />
         <meta name="google-site-verification" content="MCJ9PzqY3o-lhn2tSqqAb8Kcqo6SiSUdpYTL0dWLUgI" />
         <link rel="canonical" href="https://scout-gg.vercel.app/about" />
-        <meta property="og:title" content="About Scout.gg - Free Speed Test for Gamers" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <meta property="og:title" content="Scout.gg - About Us" />
         <meta property="og:description" content="Learn about Scout.gg - a free internet speed test designed specifically for gamers." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://scout-gg.vercel.app/about" />

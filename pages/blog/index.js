@@ -149,12 +149,13 @@ export default function Blog() {
   return (
     <div className="container">
       <Head>
-        <title>Blog | Scout.gg - Gaming & Internet Speed Tips</title>
+        <title>Scout.gg - Blog | Gaming & Internet Speed Tips</title>
         <meta name="description" content="Tips and guides about internet speed, ping optimization, reduce gaming lag, and improve gaming performance." />
         <meta name="keywords" content="gaming blog, speed test tips, ping optimization, gaming internet, reduce gaming lag, how to fix internet lag, low ping tips, best internet speed for gaming" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://scout-gg.vercel.app/blog" />
-        <meta property="og:title" content="Blog | Scout.gg" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <meta property="og:title" content="Scout.gg - Blog" />
         <meta property="og:description" content="Tips and guides about internet speed for gaming." />
         <meta property="og:type" content="website" />
       </Head>
